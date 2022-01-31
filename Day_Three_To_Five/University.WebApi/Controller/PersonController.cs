@@ -33,6 +33,7 @@ namespace University.WebApi.Controllers
                 personViewModel.FirstName = person.FirstName;
                 personViewModel.LastName = person.LastName;
                 personViewModel.OIB = person.OIB;
+                personViewModel.PlaceOfResidence = person.PlaceOfResidence;
                 personViewModel.DateofBirth = person.DateofBirth;
                 personViewModel.StudentId = person.StudentId;
                 personViewList.Add(personViewModel);
@@ -50,6 +51,7 @@ namespace University.WebApi.Controllers
             personViewModel.FirstName = person.FirstName;
             personViewModel.LastName = person.LastName;
             personViewModel.OIB = person.OIB;
+            personViewModel.PlaceOfResidence = person.PlaceOfResidence;
             personViewModel.DateofBirth = person.DateofBirth;
             personViewModel.StudentId = person.StudentId;
 
