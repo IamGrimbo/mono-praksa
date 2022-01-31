@@ -41,7 +41,7 @@ namespace University.Repository
                     person.LastName = Reader["lastName"].ToString();
                     person.OIB = Reader["oib"].ToString();
                     person.PlaceOfResidence = Reader["placeOfResidence"].ToString();
-                    person.DateofBirth = DateTime.Parse(Reader["dateOfBrith"].ToString());
+                    person.DateofBirth = DateTime.Parse(Reader["dateOfBirth"].ToString());
                     person.StudentId = int.Parse(Reader["studentId"].ToString());
                     listOfPeople.Add(person);
                 }
@@ -71,7 +71,7 @@ namespace University.Repository
                     person.LastName = Reader["lastName"].ToString();
                     person.OIB = Reader["oib"].ToString();
                     person.PlaceOfResidence = Reader["placeOfResidence"].ToString();
-                    person.DateofBirth = DateTime.Parse(Reader["dateOfBrith"].ToString());
+                    person.DateofBirth = DateTime.Parse(Reader["dateOfBirth"].ToString());
                     person.StudentId = int.Parse(Reader["studentId"].ToString());
                 }
                 Reader.Close();
