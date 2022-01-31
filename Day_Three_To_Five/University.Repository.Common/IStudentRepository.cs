@@ -1,4 +1,4 @@
-﻿using University.Model;
+using University.Model;
 using University.Model.Common;
 using System;
 using System.Collections.Generic;
@@ -12,8 +12,8 @@ namespace University.Repository.Common
     {
         Task<List<Student>> GetAllAsync();
         Task<Student> GetByIdAsync(int id);
-        Task<bool> PostAsync(Student student);
-        Task<bool> PutAsync(int id, Student student);
-        Task<bool> DeleteByIdAsync(int id);
+        Task PostAsync(Student student);
+        Task PutAsync(int id, Student student);
+        Task DeleteByIdAsync(int id);
     }
 }
