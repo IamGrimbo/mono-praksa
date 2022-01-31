@@ -1,4 +1,4 @@
-﻿using University.Model;
+using University.Model;
 using University.Model.Common;
 using University.Repository;
 using University.Repository.Common;
@@ -17,32 +17,47 @@ namespace University.Service
         {
         }
 
-        protected IStudentRepository Repository = new StudentRepository();
+        protected IPersonRepository PersonRepository = new PersonRepository();
+        protected IStudentRepository StudentRepository = new StudentRepository();
 
         public async Task<List<Student>> GetAllAsync()
         {
-            return await Repository.GetAllAsync();
+            List<Student> students = new List<Student>();
+            List<Student> studentTableMergedWithPersonTable = new List<Student>();
+            students = await StudentRepository.GetAllAsync();
+            foreach (Student student in students)
+            {
+                Student newStudent = new Student();
+                newStudent.person = new Person();
+                Person person = new Person();
+                newStudent.IndexNumber = student.IndexNumber;
+                newStudent.Course = student.Course;
+                person = await PersonRepository.GetByIdAsync(student.Id);
+                newStudent.person = person;
+                studentTableMergedWithPersonTable.Add(newStudent);
+            }
+
+            return studentTableMergedWithPersonTable;
         }
 
         public async Task<Student> GetByIdAsync(int id)
         {
-            return await Repository.GetByIdAsync(id);
+            return await StudentRepository.GetByIdAsync(id);
         }
 
-        public async Task<bool> PostAsync(Student student)
+        public async Task PostAsync(Student student)
         {
-            return await Repository.PostAsync(student);
+            await StudentRepository.PostAsync(student);
         }
 
-        public async Task<bool> PutAsync(int id, Student student)
+        public async Task PutAsync(int id, Student student)
         {
-            return await Repository.PutAsync(id, student);
+            await StudentRepository.PutAsync(id, student);
         }
 
-        public async Task<bool> DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
-            return await Repository.DeleteByIdAsync(id);
+            await StudentRepository.DeleteByIdAsync(id);
         }
-
     }
 }
