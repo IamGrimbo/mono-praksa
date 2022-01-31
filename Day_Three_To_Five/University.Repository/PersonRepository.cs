@@ -39,9 +39,9 @@ namespace University.Repository
                     person.Id = int.Parse(Reader["id"].ToString());
                     person.FirstName = Reader["firstName"].ToString();
                     person.LastName = Reader["lastName"].ToString();
+                    person.Address = Reader["ResidenceAddress"].ToString();
                     person.OIB = Reader["oib"].ToString();
                     person.PlaceOfResidence = Reader["placeOfResidence"].ToString();
-                    person.Address = Reader["ResidenceAddress"].ToString();
                     person.DateofBirth = DateTime.Parse(Reader["dateOfBirth"].ToString());
                     person.StudentId = int.Parse(Reader["studentId"].ToString());
                     listOfPeople.Add(person);
@@ -70,9 +70,9 @@ namespace University.Repository
                     person.Id = int.Parse(Reader["id"].ToString());
                     person.FirstName = Reader["firstName"].ToString();
                     person.LastName = Reader["lastName"].ToString();
+                    person.Address = Reader["ResidenceAddress"].ToString();
                     person.OIB = Reader["oib"].ToString();
                     person.PlaceOfResidence = Reader["placeOfResidence"].ToString();
-                    person.Address = Reader["ResidenceAddress"].ToString();
                     person.DateofBirth = DateTime.Parse(Reader["dateOfBirth"].ToString());
                     person.StudentId = int.Parse(Reader["studentId"].ToString());
                 }
@@ -84,7 +84,7 @@ namespace University.Repository
 
         public async Task<bool> PostAsync(Person person)
         {
-            string queryString = "INSERT INTO person VALUES('" + person.FirstName + "','" + person.LastName + "','" + person.OIB + "','" + person.PlaceOfResidence + "','" + person.Address + "','" + person.DateofBirth + "','" + person.StudentId + "'); ";
+            string queryString = "INSERT INTO person VALUES('" + person.FirstName + "','" + person.LastName + "','" + person.Address + "','" + person.OIB + "','" + person.PlaceOfResidence + "','" + person.DateofBirth + "','" + person.StudentId + "'); ";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
@@ -107,7 +107,7 @@ namespace University.Repository
         public async Task<bool> PutAsync(int id, Person person)
         {
 
-            string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', ResidenceAddress='" + person.Address + "', dateOfBrith='" + person.DateofBirth + "', studentId='" + person.StudentId + "'); ";
+            string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', ResidenceAddress='" + person.Address + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', dateOfBrith='" + person.DateofBirth + "', studentId='" + person.StudentId + "'); ";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
