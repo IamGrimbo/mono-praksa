@@ -16,7 +16,6 @@ namespace University.Model.Common
         string Address { get; set; }
         DateTime DateofBirth { get; set; }
         int StudentId { get; set; }
-        IStudent student { get; set; }
     }
 
 }
