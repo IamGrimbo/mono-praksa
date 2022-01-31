@@ -11,9 +11,9 @@ namespace University.Model.Common
         int Id { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
+        string Address { get; set; }
         string OIB { get; set; }
         string PlaceOfResidence { get; set; }
-        string Address { get; set; }
         DateTime DateofBirth { get; set; }
         int StudentId { get; set; }
     }
