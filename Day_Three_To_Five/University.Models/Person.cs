@@ -1,4 +1,4 @@
-﻿using University.Model.Common;
+using University.Model.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,6 @@ namespace University.Model
         public string Address { get; set; }
         public DateTime DateofBirth { get; set; }
         public int StudentId { get; set; }
-        public IStudent student { get; set; }
+        public Student student { get; set; }
     }
 }
