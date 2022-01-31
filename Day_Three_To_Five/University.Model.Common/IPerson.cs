@@ -13,8 +13,10 @@ namespace University.Model.Common
         string LastName { get; set; }
         string OIB { get; set; }
         string PlaceOfResidence { get; set; }
+        string Address { get; set; }
         DateTime DateofBirth { get; set; }
         int StudentId { get; set; }
+        IStudent student { get; set; }
     }
 
 }
