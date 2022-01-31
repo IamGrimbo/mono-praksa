@@ -1,4 +1,4 @@
-﻿using University.Model.Common;
+using University.Model.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,6 @@ namespace University.Model
         public int Id { get; set; }
         public string IndexNumber { get; set; }
         public string Course { get; set; }
-        public IPerson person { get; set; }
+        public Person person { get; set; }
     }
 }
