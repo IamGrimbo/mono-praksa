@@ -31,7 +31,7 @@ namespace University.Repository
             {
                 Connection.Open();
                 SqlCommand Command = new SqlCommand(queryString, Connection);
-                SqlDataReader Reader = Command.ExecuteReader();
+                SqlDataReader Reader = await Command.ExecuteReaderAsync();
 
                 while (Reader.Read())
                 {
@@ -63,7 +63,7 @@ namespace University.Repository
 
                 Connection.Open();
                 SqlCommand Command = new SqlCommand(queryString, Connection);
-                SqlDataReader Reader = Command.ExecuteReader();
+                SqlDataReader Reader = await Command.ExecuteReaderAsync();
 
                 while (Reader.Read())
                 {
@@ -93,7 +93,7 @@ namespace University.Repository
                     Connection.Open();
                     SqlCommand Command = new SqlCommand(queryString, Connection);
 
-                    Command.ExecuteNonQuery();
+                    await Command.ExecuteNonQueryAsync();
                     Connection.Close();
                     return true;
                 }
@@ -116,7 +116,7 @@ namespace University.Repository
                     Connection.Open();
                     SqlCommand Command = new SqlCommand(queryString, Connection);
 
-                    Command.ExecuteNonQuery();
+                    await Command.ExecuteNonQueryAsync();
                     Connection.Close();
                     return true;
                 }
@@ -136,7 +136,7 @@ namespace University.Repository
                 {
                     Connection.Open();
                     SqlCommand Command = new SqlCommand(queryString, Connection);
-                    Command.ExecuteNonQuery();
+                    await Command.ExecuteNonQueryAsync();
                     Connection.Close();
                     return true;
                 }
