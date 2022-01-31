@@ -39,7 +39,7 @@ namespace University.Repository
                     person.Id = int.Parse(Reader["id"].ToString());
                     person.FirstName = Reader["firstName"].ToString();
                     person.LastName = Reader["lastName"].ToString();
-                    person.Address = Reader["ResidenceAddress"].ToString();
+                    person.Address = Reader["residenceAddress"].ToString();
                     person.OIB = Reader["oib"].ToString();
                     person.PlaceOfResidence = Reader["placeOfResidence"].ToString();
                     person.DateofBirth = DateTime.Parse(Reader["dateOfBirth"].ToString());
@@ -70,7 +70,7 @@ namespace University.Repository
                     person.Id = int.Parse(Reader["id"].ToString());
                     person.FirstName = Reader["firstName"].ToString();
                     person.LastName = Reader["lastName"].ToString();
-                    person.Address = Reader["ResidenceAddress"].ToString();
+                    person.Address = Reader["residenceAddress"].ToString();
                     person.OIB = Reader["oib"].ToString();
                     person.PlaceOfResidence = Reader["placeOfResidence"].ToString();
                     person.DateofBirth = DateTime.Parse(Reader["dateOfBirth"].ToString());
@@ -107,7 +107,7 @@ namespace University.Repository
         public async Task<bool> PutAsync(int id, Person person)
         {
 
-            string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', ResidenceAddress='" + person.Address + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', dateOfBrith='" + person.DateofBirth + "', studentId='" + person.StudentId + "'); ";
+            string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', residenceAddress='" + person.Address + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', dateOfBrith='" + person.DateofBirth + "', studentId='" + person.StudentId + "'); ";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
