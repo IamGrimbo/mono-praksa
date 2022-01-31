@@ -82,68 +82,45 @@ namespace University.Repository
             }
         }
 
-        public async Task<bool> PostAsync(Person person)
+        public async Task PostAsync(Person person)
         {
             string queryString = "INSERT INTO person VALUES('" + person.FirstName + "','" + person.LastName + "','" + person.Address + "','" + person.OIB + "','" + person.PlaceOfResidence + "','" + person.DateofBirth + "','" + person.StudentId + "'); ";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                try
-                {
-                    Connection.Open();
-                    SqlCommand Command = new SqlCommand(queryString, Connection);
+                Connection.Open();
+                SqlCommand Command = new SqlCommand(queryString, Connection);
 
-                    await Command.ExecuteNonQueryAsync();
-                    Connection.Close();
-                    return true;
-                }
-                catch (SqlException sqlException)
-                {
-                    return false;
-                }
+                await Command.ExecuteNonQueryAsync();
+                Connection.Close();
             }
         }
 
-        public async Task<bool> PutAsync(int id, Person person)
+        public async Task PutAsync(int id, Person person)
         {
 
             string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', residenceAddress='" + person.Address + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', dateOfBrith='" + person.DateofBirth + "', studentId='" + person.StudentId + "'); ";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                try
-                {
-                    Connection.Open();
-                    SqlCommand Command = new SqlCommand(queryString, Connection);
+                Connection.Open();
+                SqlCommand Command = new SqlCommand(queryString, Connection);
 
-                    await Command.ExecuteNonQueryAsync();
-                    Connection.Close();
-                    return true;
-                }
-                catch (SqlException sqlException)
-                {
-                    return false;
-                }
+                await Command.ExecuteNonQueryAsync();
+                Connection.Close();
+
             }
         }
 
-        public async Task<bool> DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
             string queryString = "DELETE FROM person WHERE id=" + id + ";";
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                try
-                {
-                    Connection.Open();
-                    SqlCommand Command = new SqlCommand(queryString, Connection);
-                    await Command.ExecuteNonQueryAsync();
-                    Connection.Close();
-                    return true;
-                }
-                catch (SqlException sqlException)
-                {
-                    return false;
-                }
+                Connection.Open();
+                SqlCommand Command = new SqlCommand(queryString, Connection);
+                await Command.ExecuteNonQueryAsync();
+                Connection.Close();
             }
         }
     }
