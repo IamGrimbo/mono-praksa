@@ -1,4 +1,5 @@
-﻿using University.Model.Common;
+using University.Model;
+using University.Model.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace University.Webapi.Model
     {
         public string IndexNumber { get; set; }
         public string Course { get; set; }
+        public Person person { get; set; }
     }
 }
