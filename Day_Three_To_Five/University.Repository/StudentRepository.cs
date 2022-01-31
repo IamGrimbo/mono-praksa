@@ -73,68 +73,44 @@ namespace University.Repository
             }
         }
 
-        public async Task<bool> PostAsync(Student student)
+        public async Task PostAsync(Student student)
         {
             string queryString = "INSERT INTO student VALUES('" + student.IndexNumber + "','" + student.Course + "');";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                try
-                {
-                    Connection.Open();
-                    SqlCommand Command = new SqlCommand(queryString, Connection);
+                Connection.Open();
+                SqlCommand Command = new SqlCommand(queryString, Connection);
 
-                    await Command.ExecuteNonQueryAsync();
-                    Connection.Close();
-                    return true;
-                }
-                catch (SqlException sqlException)
-                {
-                    return false;
-                }
+                await Command.ExecuteNonQueryAsync();
+                Connection.Close();
             }
         }
 
-        public async Task<bool> PutAsync(int id, Student student)
+        public async Task PutAsync(int id, Student student)
         {
 
             string queryString = "UPDATE student SET indexnumber='" + student.IndexNumber + "', indexnumber='" + student.Course + "'WHERE id='" + id + "');";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                try
-                {
-                    Connection.Open();
-                    SqlCommand Command = new SqlCommand(queryString, Connection);
+                Connection.Open();
+                SqlCommand Command = new SqlCommand(queryString, Connection);
 
-                    await Command.ExecuteNonQueryAsync();
-                    Connection.Close();
-                    return true;
-                }
-                catch (SqlException sqlException)
-                {
-                    return false;
-                }
+                await Command.ExecuteNonQueryAsync();
+                Connection.Close();
             }
         }
 
-        public async Task<bool> DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
             string queryString = "DELETE FROM student WHERE id=" + id + ";";
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
-                try
-                {
-                    Connection.Open();
-                    SqlCommand Command = new SqlCommand(queryString, Connection);
-                    await Command.ExecuteNonQueryAsync();
-                    Connection.Close();
-                    return true;
-                }
-                catch (SqlException sqlException)
-                {
-                    return false;
-                }
+                Connection.Open();
+                SqlCommand Command = new SqlCommand(queryString, Connection);
+                await Command.ExecuteNonQueryAsync();
+                Connection.Close();
             }
         }
     }
