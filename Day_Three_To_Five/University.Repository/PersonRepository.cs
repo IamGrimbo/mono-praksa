@@ -82,7 +82,7 @@ namespace University.Repository
 
         public async Task<bool> PostAsync(Person person)
         {
-            string queryString = "INSERT INTO person VALUES('" + person.FirstName + "','" + person.LastName + "','" + person.OIB + "','" + person.PlaceOfResidence + "','" + person.StudentId + "'); ";
+            string queryString = "INSERT INTO person VALUES('" + person.FirstName + "','" + person.LastName + "','" + person.OIB + "','" + person.PlaceOfResidence + "','" + person.DateofBirth + "','" + person.StudentId + "'); ";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
@@ -105,7 +105,7 @@ namespace University.Repository
         public async Task<bool> PutAsync(int id, Person person)
         {
 
-            string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', studentId='" + person.StudentId + "'); ";
+            string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', dateOfBrith='" + person.DateofBirth + "', studentId='" + person.StudentId + "'); ";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
