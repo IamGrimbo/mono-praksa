@@ -62,6 +62,5 @@ namespace University.Service
         {
             await PersonRepository.DeleteByIdAsync(id);
         }
-
     }
 }
