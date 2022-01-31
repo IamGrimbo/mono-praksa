@@ -32,10 +32,9 @@ namespace University.WebApi.Controllers
                 PersonViewModel personViewModel = new PersonViewModel();
                 personViewModel.FirstName = person.FirstName;
                 personViewModel.LastName = person.LastName;
-                personViewModel.OIB = person.OIB;
                 personViewModel.PlaceOfResidence = person.PlaceOfResidence;
+                personViewModel.Address = person.Address;
                 personViewModel.DateofBirth = person.DateofBirth;
-                personViewModel.StudentId = person.StudentId;
                 personViewList.Add(personViewModel);
             }
             return personViewList;
@@ -50,10 +49,9 @@ namespace University.WebApi.Controllers
             person = await Service.GetByIdAsync(id);
             personViewModel.FirstName = person.FirstName;
             personViewModel.LastName = person.LastName;
-            personViewModel.OIB = person.OIB;
             personViewModel.PlaceOfResidence = person.PlaceOfResidence;
+            personViewModel.Address = person.Address;
             personViewModel.DateofBirth = person.DateofBirth;
-            personViewModel.StudentId = person.StudentId;
 
             return personViewModel;
         }
