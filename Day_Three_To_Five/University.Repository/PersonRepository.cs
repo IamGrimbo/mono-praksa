@@ -19,7 +19,7 @@ namespace University.Repository
 
         protected Person person = new Person();
 
-        static string connecitonString = "Server = localhost; Database = master; Trusted_Connection = True;";
+        static string connectionString = "Server = localhost; Database = master; Trusted_Connection = True;";
 
         public async Task<List<Person>> GetAllAsync()
         {
@@ -27,7 +27,7 @@ namespace University.Repository
 
             string queryString = "SELECT * FROM person";
 
-            using (SqlConnection Connection = new SqlConnection(connecitonString))
+            using (SqlConnection Connection = new SqlConnection(connectionString))
             {
                 Connection.Open();
                 SqlCommand Command = new SqlCommand(queryString, Connection);
@@ -56,7 +56,7 @@ namespace University.Repository
             Person person = new Person();
             string queryString = "SELECT * FROM person;";
 
-            using (SqlConnection Connection = new SqlConnection(connecitonString))
+            using (SqlConnection Connection = new SqlConnection(connectionString))
             {
 
                 Connection.Open();
@@ -82,7 +82,7 @@ namespace University.Repository
         {
             string queryString = "INSERT INTO person VALUES('" + person.FirstName + "','" + person.LastName + "','" + person.OIB + "','" + person.PlaceOfResidence + "','" + person.StudentId + "'); ";
 
-            using (SqlConnection Connection = new SqlConnection(connecitonString))
+            using (SqlConnection Connection = new SqlConnection(connectionString))
             {
                 try
                 {
@@ -105,7 +105,7 @@ namespace University.Repository
 
             string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', studentId='" + person.StudentId + "'); ";
 
-            using (SqlConnection Connection = new SqlConnection(connecitonString))
+            using (SqlConnection Connection = new SqlConnection(connectionString))
             {
                 try
                 {
@@ -126,7 +126,7 @@ namespace University.Repository
         public async Task<bool> DeleteByIdAsync(int id)
         {
             string queryString = "DELETE FROM person WHERE id=" + id + ";";
-            using (SqlConnection Connection = new SqlConnection(connecitonString))
+            using (SqlConnection Connection = new SqlConnection(connectionString))
             {
                 try
                 {
