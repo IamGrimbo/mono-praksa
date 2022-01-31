@@ -12,5 +12,6 @@ namespace University.Model
         public int Id { get; set; }
         public string IndexNumber { get; set; }
         public string Course { get; set; }
+        public IPerson person { get; set; }
     }
 }
