@@ -17,50 +17,31 @@ namespace University.Service
         {
         }
 
-        protected IPersonRepository PersonRepository = new PersonRepository();
-        protected IStudentRepository StudentRepository = new StudentRepository();
+        protected IPersonRepository Repository = new PersonRepository();
 
         public async Task<List<Person>> GetAllAsync()
         {
-            List<Person> people = new List<Person>();
-            List<Person> personTableMergedWithStudentTable = new List<Person>();
-            people = await PersonRepository.GetAllAsync();
-            foreach (Person person in people)
-            {
-                Person newPerson = new Person();
-                newPerson.student = new Student();
-                Student student = new Student();
-                newPerson.FirstName = person.FirstName;
-                newPerson.LastName = person.LastName;
-                newPerson.Address = person.Address;
-                newPerson.PlaceOfResidence = person.PlaceOfResidence;
-                newPerson.DateofBirth = person.DateofBirth;
-                student = await StudentRepository.GetByIdAsync(student.Id);
-                newPerson.student = student;
-                personTableMergedWithStudentTable.Add(newPerson);
-            }
-
-            return personTableMergedWithStudentTable;
+            return await Repository.GetAllAsync();
         }
 
         public async Task<Person> GetByIdAsync(int id)
         {
-            return await PersonRepository.GetByIdAsync(id);
+            return await Repository.GetByIdAsync(id);
         }
 
         public async Task PostAsync(Person person)
         {
-            await PersonRepository.PostAsync(person);
+            await Repository.PostAsync(person);
         }
 
         public async Task PutAsync(int id, Person person)
         {
-            await PersonRepository.PutAsync(id, person);
+            await Repository.PutAsync(id, person);
         }
 
         public async Task DeleteByIdAsync(int id)
         {
-            await PersonRepository.DeleteByIdAsync(id);
+            await Repository.DeleteByIdAsync(id);
         }
     }
 }
