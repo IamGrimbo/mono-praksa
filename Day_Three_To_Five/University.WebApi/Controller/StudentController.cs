@@ -26,7 +26,7 @@ namespace University.WebApi.Controllers
             try
             {
                 List<StudentViewModel> studentViewList = new List<StudentViewModel>();
-                List<Student> studentList = new List<Student>();
+                List<IStudent> studentList = new List<IStudent>();
                 studentList = await Service.GetAllAsync();
 
                 foreach (var student in studentList)
@@ -50,7 +50,7 @@ namespace University.WebApi.Controllers
         {
             try
             {
-                Student student = new Student();
+                IStudent student = new Student();
                 student = await Service.GetByIdAsync(id);
 
                 StudentViewModel studentViewModel = new StudentViewModel();
