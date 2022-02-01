@@ -10,10 +10,10 @@ namespace University.Repository.Common
 {
     public interface IPersonRepository
     {
-        Task<List<Person>> GetAllAsync();
-        Task<Person> GetByIdAsync(int id);
-        Task PostAsync(Person person);
-        Task PutAsync(int id, Person person);
+        Task<List<IPerson>> GetAllAsync();
+        Task<IPerson> GetByIdAsync(int id);
+        Task PostAsync(IPerson person);
+        Task PutAsync(int id, IPerson person);
         Task DeleteByIdAsync(int id);
     }
 }
