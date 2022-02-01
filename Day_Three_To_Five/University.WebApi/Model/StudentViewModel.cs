@@ -12,6 +12,5 @@ namespace University.Webapi.Model
     {
         public string IndexNumber { get; set; }
         public string Course { get; set; }
-        public Person person { get; set; }
     }
 }
