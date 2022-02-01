@@ -1,9 +1,9 @@
+using University.Model;
 using University.Model.Common;
 using University.Service;
 using University.Service.Common;
 using System;
 using System.Collections.Generic;
-using University.Model;
 using University.Webapi.Model;
 using System.Data;
 using System.Data.SqlClient;
@@ -26,7 +26,7 @@ namespace University.WebApi.Controllers
             try
             {
                 List<PersonViewModel> personViewList = new List<PersonViewModel>();
-                List<Person> personList = new List<Person>();
+                List<IPerson> personList = new List<IPerson>();
                 personList = await Service.GetAllAsync();
 
                 foreach (var person in personList)
@@ -54,7 +54,7 @@ namespace University.WebApi.Controllers
             try
             {
                 PersonViewModel personViewModel = new PersonViewModel();
-                Person person = new Person();
+                IPerson person = new Person();
 
                 person = await Service.GetByIdAsync(id);
                 personViewModel.FirstName = person.FirstName;
