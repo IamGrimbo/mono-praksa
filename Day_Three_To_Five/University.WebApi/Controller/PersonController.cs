@@ -36,7 +36,7 @@ namespace University.WebApi.Controllers
                     personViewModel.LastName = person.LastName;
                     personViewModel.Address = person.Address;
                     personViewModel.PlaceOfResidence = person.PlaceOfResidence;
-                    personViewModel.DateofBirth = person.DateofBirth;
+                    personViewModel.DateOfBirth = person.DateOfBirth;
                     personViewList.Add(personViewModel);
                 }
 
@@ -61,7 +61,7 @@ namespace University.WebApi.Controllers
                 personViewModel.LastName = person.LastName;
                 personViewModel.Address = person.Address;
                 personViewModel.PlaceOfResidence = person.PlaceOfResidence;
-                personViewModel.DateofBirth = person.DateofBirth;
+                personViewModel.DateOfBirth = person.DateOfBirth;
 
                 return Request.CreateResponse(HttpStatusCode.OK, personViewModel);
             }
