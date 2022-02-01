@@ -76,7 +76,7 @@ namespace University.WebApi.Controllers
         {
             try
             {
-                Person newPerson = new Person();
+                IPerson newPerson = new Person();
                 await Service.PostAsync(newPerson);
                 return Request.CreateResponse(HttpStatusCode.OK, "New person added!");
             }
@@ -91,7 +91,7 @@ namespace University.WebApi.Controllers
         {
             try
             {
-                Person newPerson = new Person();
+                IPerson newPerson = new Person();
                 await Service.PutAsync(id, newPerson);
                 return Request.CreateResponse(HttpStatusCode.OK, "Person updated!");
             }
