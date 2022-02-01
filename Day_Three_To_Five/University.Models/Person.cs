@@ -17,6 +17,5 @@ namespace University.Model
         public string PlaceOfResidence { get; set; }
         public DateTime DateofBirth { get; set; }
         public int StudentId { get; set; }
-        public Student student { get; set; }
     }
 }
