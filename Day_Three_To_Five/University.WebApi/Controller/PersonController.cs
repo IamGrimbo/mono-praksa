@@ -1,4 +1,4 @@
-﻿using University.Model.Common;
+using University.Model.Common;
 using University.Service;
 using University.Service.Common;
 using System;
@@ -18,60 +18,101 @@ namespace University.WebApi.Controllers
     public class PersonController : ApiController
     {
         public PersonController() { }
-        protected PersonService Service = new PersonService();
+        protected IPersonService Service = new PersonService();
 
         [HttpGet]
-        public async Task<List<PersonViewModel>> GetAllAsync()
+        public async Task<HttpResponseMessage> GetAllAsync()
         {
-            List<PersonViewModel> personViewList = new List<PersonViewModel>();
-            List<Person> personList = new List<Person>();
-            personList = await Service.GetAllAsync();
-
-            foreach (var person in personList)
+            try
             {
-                PersonViewModel personViewModel = new PersonViewModel();
-                personViewModel.FirstName = person.FirstName;
-                personViewModel.LastName = person.LastName;
-                personViewModel.PlaceOfResidence = person.PlaceOfResidence;
-                personViewModel.Address = person.Address;
-                personViewModel.DateofBirth = person.DateofBirth;
-                personViewList.Add(personViewModel);
+                List<PersonViewModel> personViewList = new List<PersonViewModel>();
+                List<Person> personList = new List<Person>();
+                personList = await Service.GetAllAsync();
+
+                foreach (var person in personList)
+                {
+                    PersonViewModel personViewModel = new PersonViewModel();
+                    personViewModel.FirstName = person.FirstName;
+                    personViewModel.LastName = person.LastName;
+                    personViewModel.Address = person.Address;
+                    personViewModel.PlaceOfResidence = person.PlaceOfResidence;
+                    personViewModel.DateofBirth = person.DateofBirth;
+                    personViewList.Add(personViewModel);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, personViewList);
             }
-            return personViewList;
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
         [HttpGet]
-        public async Task<PersonViewModel> GetByIdAsync(int id)
+        public async Task<HttpResponseMessage> GetByIdAsync(int id)
         {
-            PersonViewModel personViewModel = new PersonViewModel();
-            Person person = new Person();
+            try
+            {
+                PersonViewModel personViewModel = new PersonViewModel();
+                Person person = new Person();
 
-            person = await Service.GetByIdAsync(id);
-            personViewModel.FirstName = person.FirstName;
-            personViewModel.LastName = person.LastName;
-            personViewModel.PlaceOfResidence = person.PlaceOfResidence;
-            personViewModel.Address = person.Address;
-            personViewModel.DateofBirth = person.DateofBirth;
+                person = await Service.GetByIdAsync(id);
+                personViewModel.FirstName = person.FirstName;
+                personViewModel.LastName = person.LastName;
+                personViewModel.Address = person.Address;
+                personViewModel.PlaceOfResidence = person.PlaceOfResidence;
+                personViewModel.DateofBirth = person.DateofBirth;
 
-            return personViewModel;
+                return Request.CreateResponse(HttpStatusCode.OK, personViewModel);
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
         [HttpPost]
-        public async Task<bool> PostAsync(Person person)
+        public async Task<HttpResponseMessage> PostAsync([FromBody] PersonViewModel person)
         {
-            return await Service.PostAsync(person);
+            try
+            {
+                Person newPerson = new Person();
+                await Service.PostAsync(newPerson);
+                return Request.CreateResponse(HttpStatusCode.OK, "New person added!");
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
         }
 
         [HttpPut]
-        public async Task<bool> PutAsync(int id, Person person)
+        public async Task<HttpResponseMessage> PutAsync(int id, PersonViewModel person)
         {
-            return await Service.PutAsync(id, person);
+            try
+            {
+                Person newPerson = new Person();
+                await Service.PutAsync(id, newPerson);
+                return Request.CreateResponse(HttpStatusCode.OK, "Person updated!");
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
         }
 
         [HttpDelete]
-        public async Task<bool> DeleteByIdAsync(int id)
+        public async Task<HttpResponseMessage> DeleteByIdAsync(int id)
         {
-            return await Service.DeleteByIdAsync(id);
+            try
+            {
+                await Service.DeleteByIdAsync(id);
+                return Request.CreateResponse(HttpStatusCode.OK, "Person deleted!");
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
     }
