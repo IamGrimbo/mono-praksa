@@ -1,4 +1,3 @@
-using University.Model;
 using University.Model.Common;
 using System;
 using System.Collections.Generic;
@@ -10,10 +9,10 @@ namespace University.Service.Common
 {
     public interface IPersonService
     {
-        Task<List<Person>> GetAllAsync();
-        Task<Person> GetByIdAsync(int id);
-        Task PostAsync(Person person);
-        Task PutAsync(int id, Person person);
+        Task<List<IPerson>> GetAllAsync();
+        Task<IPerson> GetByIdAsync(int id);
+        Task PostAsync(IPerson person);
+        Task PutAsync(int id, IPerson person);
         Task DeleteByIdAsync(int id);
     }
 }
