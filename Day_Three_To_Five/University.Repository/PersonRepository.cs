@@ -46,17 +46,19 @@ namespace University.Repository
                     person.StudentId = int.Parse(Reader["studentId"].ToString());
                     listOfPeople.Add(person);
                 }
+
                 Reader.Close();
                 Connection.Close();
-                return listOfPeople;
             }
+
+            return listOfPeople;
         }
 
         public async Task<Person> GetByIdAsync(int id)
         {
 
             Person person = new Person();
-            string queryString = "SELECT * FROM person;";
+            string queryString = "SELECT * FROM person WHERE id=" + id + ";";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
@@ -76,10 +78,12 @@ namespace University.Repository
                     person.DateofBirth = DateTime.Parse(Reader["dateOfBirth"].ToString());
                     person.StudentId = int.Parse(Reader["studentId"].ToString());
                 }
+
                 Reader.Close();
                 Connection.Close();
-                return person;
             }
+
+            return person;
         }
 
         public async Task PostAsync(Person person)
@@ -108,7 +112,6 @@ namespace University.Repository
 
                 await Command.ExecuteNonQueryAsync();
                 Connection.Close();
-
             }
         }
 
@@ -119,6 +122,7 @@ namespace University.Repository
             {
                 Connection.Open();
                 SqlCommand Command = new SqlCommand(queryString, Connection);
+
                 await Command.ExecuteNonQueryAsync();
                 Connection.Close();
             }
