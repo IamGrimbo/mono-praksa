@@ -15,29 +15,32 @@ using System.Threading.Tasks;
 
 namespace University.WebApi.Controllers
 {
-    public class StudentController : ApiController
+    public class PersonController : ApiController
     {
-        public StudentController() { }
-        protected IStudentService Service = new StudentService();
+        public PersonController() { }
+        protected IPersonService Service = new PersonService();
 
         [HttpGet]
         public async Task<HttpResponseMessage> GetAllAsync()
         {
             try
             {
-                List<StudentViewModel> studentViewList = new List<StudentViewModel>();
-                List<IStudent> studentList = new List<IStudent>();
-                studentList = await Service.GetAllAsync();
+                List<PersonViewModel> personViewList = new List<PersonViewModel>();
+                List<IPerson> personList = new List<IPerson>();
+                personList = await Service.GetAllAsync();
 
-                foreach (var student in studentList)
+                foreach (var person in personList)
                 {
-                    StudentViewModel studentViewModel = new StudentViewModel();
-                    studentViewModel.IndexNumber = student.IndexNumber;
-                    studentViewModel.Course = student.Course;
-                    studentViewList.Add(studentViewModel);
+                    PersonViewModel personViewModel = new PersonViewModel();
+                    personViewModel.FirstName = person.FirstName;
+                    personViewModel.LastName = person.LastName;
+                    personViewModel.Address = person.Address;
+                    personViewModel.PlaceOfResidence = person.PlaceOfResidence;
+                    personViewModel.DateOfBirth = person.DateOfBirth;
+                    personViewList.Add(personViewModel);
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, studentViewList);
+                return Request.CreateResponse(HttpStatusCode.OK, personViewList);
             }
             catch
             {
@@ -50,14 +53,17 @@ namespace University.WebApi.Controllers
         {
             try
             {
-                IStudent student = new Student();
-                student = await Service.GetByIdAsync(id);
+                PersonViewModel personViewModel = new PersonViewModel();
+                IPerson person = new Person();
 
-                StudentViewModel studentViewModel = new StudentViewModel();
-                studentViewModel.IndexNumber = student.IndexNumber;
-                studentViewModel.Course = student.Course;
+                person = await Service.GetByIdAsync(id);
+                personViewModel.FirstName = person.FirstName;
+                personViewModel.LastName = person.LastName;
+                personViewModel.Address = person.Address;
+                personViewModel.PlaceOfResidence = person.PlaceOfResidence;
+                personViewModel.DateOfBirth = person.DateOfBirth;
 
-                return Request.CreateResponse(HttpStatusCode.OK, studentViewModel);
+                return Request.CreateResponse(HttpStatusCode.OK, personViewModel);
             }
             catch
             {
@@ -66,13 +72,13 @@ namespace University.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> PostAsync([FromBody] StudentViewModel student)
+        public async Task<HttpResponseMessage> PostAsync([FromBody] PersonViewModel person)
         {
             try
             {
-                Student newStudent = new Student();
-                await Service.PostAsync(newStudent);
-                return Request.CreateResponse(HttpStatusCode.OK, "New student added!");
+                IPerson newPerson = new Person();
+                await Service.PostAsync(newPerson);
+                return Request.CreateResponse(HttpStatusCode.OK, "New person added!");
             }
             catch
             {
@@ -81,13 +87,13 @@ namespace University.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> PutAsync(int id, StudentViewModel student)
+        public async Task<HttpResponseMessage> PutAsync(int id, PersonViewModel person)
         {
             try
             {
-                Student newStudent = new Student();
-                await Service.PutAsync(id, newStudent);
-                return Request.CreateResponse(HttpStatusCode.OK, "Student updated!");
+                IPerson newPerson = new Person();
+                await Service.PutAsync(id, newPerson);
+                return Request.CreateResponse(HttpStatusCode.OK, "Person updated!");
             }
             catch
             {
@@ -101,7 +107,7 @@ namespace University.WebApi.Controllers
             try
             {
                 await Service.DeleteByIdAsync(id);
-                return Request.CreateResponse(HttpStatusCode.OK, "Student deleted!");
+                return Request.CreateResponse(HttpStatusCode.OK, "Person deleted!");
             }
             catch
             {
