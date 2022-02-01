@@ -14,6 +14,6 @@ namespace University.Webapi.Model
         public string LastName { get; set; }
         public string PlaceOfResidence { get; set; }
         public string Address { get; set; }
-        public DateTime DateofBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
     }
 }
