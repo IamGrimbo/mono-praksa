@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace University.Repository.Common
 {
-    public interface IStudentRepository
+    public interface IPersonRepository
     {
-        Task<List<IStudent>> GetAllAsync();
-        Task<IStudent> GetByIdAsync(int id);
-        Task PostAsync(IStudent student);
-        Task PutAsync(int id, IStudent student);
+        Task<List<IPerson>> GetAllAsync();
+        Task<IPerson> GetByIdAsync(int id);
+        Task PostAsync(IPerson person);
+        Task PutAsync(int id, IPerson person);
         Task DeleteByIdAsync(int id);
     }
 }
