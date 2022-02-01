@@ -17,13 +17,13 @@ namespace University.Repository
     {
         public PersonRepository() { }
 
-        protected Person person = new Person();
+        protected IPerson person = new Person();
 
         static string connectionString = "Server = localhost; Database = master; Trusted_Connection = True;";
 
-        public async Task<List<Person>> GetAllAsync()
+        public async Task<List<IPerson>> GetAllAsync()
         {
-            List<Person> listOfPeople = new List<Person>();
+            List<IPerson> listOfPeople = new List<IPerson>();
 
             string queryString = "SELECT * FROM person";
 
@@ -54,10 +54,10 @@ namespace University.Repository
             return listOfPeople;
         }
 
-        public async Task<Person> GetByIdAsync(int id)
+        public async Task<IPerson> GetByIdAsync(int id)
         {
 
-            Person person = new Person();
+            IPerson person = new Person();
             string queryString = "SELECT * FROM person WHERE id=" + id + ";";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -86,7 +86,7 @@ namespace University.Repository
             return person;
         }
 
-        public async Task PostAsync(Person person)
+        public async Task PostAsync(IPerson person)
         {
             string queryString = "INSERT INTO person VALUES('" + person.FirstName + "','" + person.LastName + "','" + person.Address + "','" + person.OIB + "','" + person.PlaceOfResidence + "','" + person.DateOfBirth + "','" + person.StudentId + "'); ";
 
@@ -100,7 +100,7 @@ namespace University.Repository
             }
         }
 
-        public async Task PutAsync(int id, Person person)
+        public async Task PutAsync(int id, IPerson person)
         {
 
             string queryString = "UPDATE person SET firstName='" + person.FirstName + "', lastName='" + person.LastName + "', residenceAddress='" + person.Address + "', oib='" + person.OIB + "', placeOfResidence='" + person.PlaceOfResidence + "', dateOfBrith='" + person.DateOfBirth + "', studentId='" + person.StudentId + "'); ";
