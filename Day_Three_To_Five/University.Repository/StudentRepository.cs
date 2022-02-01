@@ -41,10 +41,12 @@ namespace University.Repository
                     student.Course = Reader["course"].ToString();
                     listOfStudents.Add(student);
                 }
+
                 Reader.Close();
                 Connection.Close();
-                return listOfStudents;
             }
+
+            return listOfStudents;
         }
 
         public async Task<Student> GetByIdAsync(int id)
@@ -67,10 +69,12 @@ namespace University.Repository
                     student.IndexNumber = Reader["indexNumber"].ToString();
                     student.Course = Reader["course"].ToString();
                 }
+
                 Reader.Close();
                 Connection.Close();
-                return student;
             }
+
+            return student;
         }
 
         public async Task PostAsync(Student student)
@@ -90,7 +94,7 @@ namespace University.Repository
         public async Task PutAsync(int id, Student student)
         {
 
-            string queryString = "UPDATE student SET indexnumber='" + student.IndexNumber + "', indexnumber='" + student.Course + "'WHERE id='" + id + "');";
+            string queryString = "UPDATE student SET indexnumber='" + student.IndexNumber + "', course='" + student.Course + "'WHERE id='" + id + "');";
 
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
@@ -109,6 +113,7 @@ namespace University.Repository
             {
                 Connection.Open();
                 SqlCommand Command = new SqlCommand(queryString, Connection);
+
                 await Command.ExecuteNonQueryAsync();
                 Connection.Close();
             }
