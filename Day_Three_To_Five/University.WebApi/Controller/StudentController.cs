@@ -1,4 +1,4 @@
-﻿using University.Model;
+using University.Model;
 using University.Model.Common;
 using University.Service;
 using University.Service.Common;
@@ -21,51 +21,92 @@ namespace University.WebApi.Controllers
         protected IStudentService Service = new StudentService();
 
         [HttpGet]
-        public async Task<List<StudentViewModel>> GetAllAsync()
+        public async Task<HttpResponseMessage> GetAllAsync()
         {
-            List<StudentViewModel> studentViewList = new List<StudentViewModel>();
-            List<Student> studentList = new List<Student>();
-            studentList = await Service.GetAllAsync();
-
-            foreach (var student in studentList)
+            try
             {
-                StudentViewModel studentViewModel = new StudentViewModel();
-                studentViewModel.IndexNumber = student.IndexNumber;
-                studentViewModel.Course = student.Course;
-                studentViewList.Add(studentViewModel);
+                List<StudentViewModel> studentViewList = new List<StudentViewModel>();
+                List<Student> studentList = new List<Student>();
+                studentList = await Service.GetAllAsync();
+
+                foreach (var student in studentList)
+                {
+                    StudentViewModel studentViewModel = new StudentViewModel();
+                    studentViewModel.IndexNumber = student.IndexNumber;
+                    studentViewModel.Course = student.Course;
+                    studentViewList.Add(studentViewModel);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, studentViewList);
             }
-            return studentViewList;
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
         [HttpGet]
-        public async Task<StudentViewModel> GetByIdAsync(int id)
+        public async Task<HttpResponseMessage> GetByIdAsync(int id)
         {
-            Student student = new Student();
-            student = await Service.GetByIdAsync(id);
+            try
+            {
+                Student student = new Student();
+                student = await Service.GetByIdAsync(id);
 
-            StudentViewModel studentViewModel = new StudentViewModel();
-            studentViewModel.IndexNumber = student.IndexNumber;
-            studentViewModel.Course = student.Course;
-            
-            return studentViewModel;
+                StudentViewModel studentViewModel = new StudentViewModel();
+                studentViewModel.IndexNumber = student.IndexNumber;
+                studentViewModel.Course = student.Course;
+
+                return Request.CreateResponse(HttpStatusCode.OK, studentViewModel);
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
         [HttpPost]
-        public async Task<bool> PostAsync(Student student)
+        public async Task<HttpResponseMessage> PostAsync([FromBody] StudentViewModel student)
         {
-            return await Service.PostAsync(student);
+            try
+            {
+                Student newStudent = new Student();
+                await Service.PostAsync(newStudent);
+                return Request.CreateResponse(HttpStatusCode.OK, "New student added!");
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
         }
 
         [HttpPut]
-        public async Task<bool> PutAsync(int id, Student student)
+        public async Task<HttpResponseMessage> PutAsync(int id, StudentViewModel student)
         {
-            return await Service.PutAsync(id, student);
+            try
+            {
+                Student newStudent = new Student();
+                await Service.PutAsync(id, newStudent);
+                return Request.CreateResponse(HttpStatusCode.OK, "Student updated!");
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
         }
 
         [HttpDelete]
-        public async Task<bool> DeleteByIdAsync(int id)
+        public async Task<HttpResponseMessage> DeleteByIdAsync(int id)
         {
-            return await Service.DeleteByIdAsync(id);
+            try
+            {
+                await Service.DeleteByIdAsync(id);
+                return Request.CreateResponse(HttpStatusCode.OK, "Student deleted!");
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
     }
