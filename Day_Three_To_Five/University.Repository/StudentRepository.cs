@@ -17,13 +17,13 @@ namespace University.Repository
     {
         public StudentRepository() { }
 
-        protected Student student = new Student();
+        protected IStudent student = new Student();
 
         static string connectionString = "Server = localhost; Database = master; Trusted_Connection = True;";
 
-        public async Task<List<Student>> GetAllAsync()
+        public async Task<List<IStudent>> GetAllAsync()
         {
-            List<Student> listOfStudents = new List<Student>();
+            List<IStudent> listOfStudents = new List<IStudent>();
 
             string queryString = "SELECT * FROM student";
 
@@ -49,10 +49,10 @@ namespace University.Repository
             return listOfStudents;
         }
 
-        public async Task<Student> GetByIdAsync(int id)
+        public async Task<IStudent> GetByIdAsync(int id)
         {
 
-            Student student = new Student();
+            IStudent student = new Student();
 
             string queryString = "SELECT * FROM student WHERE id=" + id + ";";
 
@@ -77,7 +77,7 @@ namespace University.Repository
             return student;
         }
 
-        public async Task PostAsync(Student student)
+        public async Task PostAsync(IStudent student)
         {
             string queryString = "INSERT INTO student VALUES('" + student.IndexNumber + "','" + student.Course + "');";
 
@@ -91,7 +91,7 @@ namespace University.Repository
             }
         }
 
-        public async Task PutAsync(int id, Student student)
+        public async Task PutAsync(int id, IStudent student)
         {
 
             string queryString = "UPDATE student SET indexnumber='" + student.IndexNumber + "', course='" + student.Course + "'WHERE id='" + id + "');";
