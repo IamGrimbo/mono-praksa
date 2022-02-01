@@ -1,4 +1,3 @@
-using University.Model;
 using University.Model.Common;
 using University.Repository;
 using University.Repository.Common;
@@ -19,22 +18,22 @@ namespace University.Service
 
         protected IPersonRepository Repository = new PersonRepository();
 
-        public async Task<List<Person>> GetAllAsync()
+        public async Task<List<IPerson>> GetAllAsync()
         {
             return await Repository.GetAllAsync();
         }
 
-        public async Task<Person> GetByIdAsync(int id)
+        public async Task<IPerson> GetByIdAsync(int id)
         {
             return await Repository.GetByIdAsync(id);
         }
 
-        public async Task PostAsync(Person person)
+        public async Task PostAsync(IPerson person)
         {
             await Repository.PostAsync(person);
         }
 
-        public async Task PutAsync(int id, Person person)
+        public async Task PutAsync(int id, IPerson person)
         {
             await Repository.PutAsync(id, person);
         }
